@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Data Dashboard</title>
+    <link rel="styleshhet" href="style.css">
+</head>
+<body>
+<header>
+    <h1>Health Data Dashboard</h1>
+</header>
+
+<div class="dashboard-container">
+    <div class="summary-section">
+        <h2>Summary</h2>
+        <div class="summary-data">
+            <div class="summary-item">
+                <h3>Patients</h3>
+                <div class="summary-value">
+                    <p>1000</p>
+                    <button class="detail-button">Details</button>
+                </div>
+            </div>
+            <div class="summary-item">
+                <h3>Visits</h3>
+                <div class="summary-value">
+                    <p>5000</p>
+                    <button class="detail-button">Details</button>
+                </div>
+            </div>
+            <!-- Add more summary items as needed -->
+        </div>
+    </div>
+    <h1 class="bottom">
+        Hi {{session.username}}!!</br></br> Welcome to the index page...                 
+   </h1>
+
+
+    <div class="patient-details">
+        <h2>Patient Details</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Condition</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" value="John Doe"></td>
+                    <td><input type="number" value="35"></td>
+                    <td>
+                        <select>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </td>
+                    <td><input type="text" value="Healthy"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" value="Jane Smith"></td>
+                    <td><input type="number" value="42"></td>
+                    <td>
+                        <select>
+                            <option value="female">Female</option>
+                            <option value="male">Male</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </td>
+                    <td><input type="text" value="In Treatment"></td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+    <div class="chart-section">
+        <h2>Health Overview</h2>
+        <div class="chart-container">
+            <canvas id="healthChart" width="400" height="400"></canvas>
+        </div>
+    </div>
+</div>
+
+
+<div class="dashboard-container">
+    <div class="summary-section">
+        <!-- Summary section with editable health details -->
+        <h2>Health Details</h2>
+        <div class="editable-section">
+            <label for="bloodPressureInput">Blood Pressure:</label>
+            <input type="text" id="bloodPressureInput" value="120/80 mmHg">
+            <label for="pulseRateInput">Pulse Rate:</label>
+            <input type="text" id="pulseRateInput" value="70 BPM">
+            <label for="bodyTemperatureInput">Body Temperature:</label>
+            <input type="text" id="bodyTemperatureInput" value="98.6 °F">
+            <label for="bloodSugarInput">Blood Sugar:</label>
+            <input type="text" id="bloodSugarInput" value="100 mg/dL">
+            <button onclick="updateHealthDetails()">Update</button>
+        </div>
+    </div>
+
+
+
+    <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+    
+
+<footer>
+    <p>&copy; 2024 Health Data Dashboard</p>
+</footer>
+
+
+<script href="script.js"></script>
+
+
+</body>
+</html>

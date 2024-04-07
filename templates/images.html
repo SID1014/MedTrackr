@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        {% for image in images %}
+        <li>
+            <img src="{{ url_for('static', filename='images/' + image.filename) }}" alt="{{ image.filename }}"  width="400" height="150">
+            <p>Comment: {{ image.disease }}</p> 
+            <p>{{image.date}}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

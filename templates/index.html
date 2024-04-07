@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Health Tracking System</title>
+    
+</head>
+<body><div id="rangs">
+    <header id="headerr">
+        <img src="logo1.jpg" alt="   " class="logo">
+        
+        <h1 class="nava">Patient Health Tracking System</h1>
+       
+        <nav font-size: small ><div id="dava">
+            <a href="#headerr">Home</a>
+            <a href="#services">Services</a>
+            <a href="#abouut">About</a>
+            <a href="{{ url_for('register') }}">Signup</a>
+            <a href="#login">Login</a></div>
+        </nav>
+    </header></div>
+    <div class="hero">
+        <h2 class="contetntt">Track, Analyze, and Improve Public Health</h2>
+        <p class="contetntt">Our system provides real-time data tracking and analysis for effective  dokdsfdbugjdgdnkdbmd fdkvvnvnidvj vinksdldsjikmd <br> jiskslsm vjisokvsdvmkdv sopspg gporgprriojn gorpgbndfkmmdmv nsjbsguvnx <br>shri8depe public health management.</p>
+        <button class="don" id="sepa">Get Started</button>
+    </div>
+    <div class="features">
+        <h2>Key Features</h2>
+        <div class="feature">
+            <h3>Real-time Data</h3>
+            <p>Access up-to-date information instantly for informed decision-making.</p>
+        </div>
+        <div class="feature">
+            <h3>Data Visualization</h3>
+            <p>Visualize data through charts and graphs for better understanding.</p>
+        </div>
+        <div class="feature">
+            <h3>Customizable Reports</h3>
+            <p>Generate customizable reports tailored to your needs.</p>
+        </div>
+    </div>
+    
+    <div class="login" id="login">
+        <h1>Login</h1>
+    <div class="login-form">
+        <h2>Patient Login</h2>
+        <form action="{{ url_for('login') }}" method="post">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required><br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required><br>
+            <button type="submit">Login as Patient</button>
+        </form>
+        {% if msg %}
+            <p>{{ msg }}</p>
+        {% endif %}
+    </div>
+
+    <div class="login-form">
+        <h2>Doctor Login</h2>
+        <form action="{{ url_for('logi') }}" method="post">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required><br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required><br>
+            <button type="submit">Login as Doctor</button>
+        </form>
+        {% if msg %}
+            <p>{{ msg }}</p>
+        {% endif %}
+    </div>
+
+    </div>
+    <div class="contact">
+        <h2>Contact Us</h2>
+        <form action="#" method="post" id="form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <input type="submit" value="Send Message" id="button1" onclick="redirectToOtherPage()">
+    </div>
+   
+    <section id="services">
+        <h1 id="hh1" font-family:poppins >Our services</h1>
+        
+        <div class="service"><img src="section1.jpg" alt="Section 1">
+            <h2>Section 1 Title</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et metus magna.</p>
+        </div>
+    </section>
+    <section class="services">
+        
+        <div class="service"><img src="section2.jpg" alt="Section 2">
+            <h2>Section 2 Title</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et metus magna.</p>
+        </div>
+    </section>
+    <section>
+        
+        <div class="service"><img src="section3.jpg" alt="Section 3">
+            <h2>Section 3 Title</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et metus magna.</p>
+        </div>
+    </section>
+    <div id="abouut" class="about">
+        <h2>About Us</h2>
+        <p>We are dedicated to providing innovative solutions for public health management.</p>
+        <img src="" alt="">
+    </div>
+    <footer>
+        <p>&copy; 2024 Public Health Tracking System. All rights reserved.</p>
+    </footer>
+    <script>
+        function redirectToOtherPage() {
+       
+        window.location.href = 'pd.html';
+    }
+    </script>
+</body>
+</html>

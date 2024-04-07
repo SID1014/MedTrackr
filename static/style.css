@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  h1, h2 {
+    margin-top: 0;
+  }
+  
+  #ehrContainer {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  #ehrContainer > div {
+    flex: 1 1 45%;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  
+  #ehrContainer > div:last-child {
+    margin-right: 0;
+  }
+  
+  #ehrContainer h2 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+    margin-bottom: 10px;

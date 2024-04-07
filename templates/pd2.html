@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Health Dashboard</title>
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+header {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #343a40;
+    color: #fff;
+}
+
+.dashboard-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3 {
+    text-align: center;
+    color: #007bff;
+}
+
+.summary-section {
+    margin-bottom: 30px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.chart-container {
+    text-align: center;
+    margin-top: 20px;
+}
+#dashboardTitle{
+    color: white;
+    font-size: 40px;
+}
+
+
+.upload-section {
+    margin-top: 30px;
+    color: #007bff;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.upload-form {
+    margin-bottom: 10px;
+    color: #007bff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.uploaded-image-container {
+    text-align: center;
+    margin-top: 20px;
+}
+#uploadd{
+    color: #007bff;
+    font-size: 25px;
+    padding-left: 20px;
+}
+
+
+
+
+.chart-container {
+    text-align: center;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+
+.chart-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+
+.chart-canvas {
+    max-width: 100%;
+    margin: auto;
+}
+
+
+.chart-legend {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.chart-legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.chart-legend-color {
+    width: 20px;
+    height: 10px;
+    margin-right: 5px;
+    border-radius: 2px;
+}
+
+
+@media (max-width: 600px) {
+    .chart-legend {
+        flex-wrap: wrap;
+    }
+    .chart-legend-item {
+        margin-bottom: 10px;
+    }
+}
+
+
+.message-box {
+    background-color: #007bff;
+    color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.message-box:hover {
+    transform: translateY(-5px); /* Move box up on hover */
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3); /* Apply box shadow on hover */
+    cursor: pointer;
+    color: darkblue;
+    background-color: #343a40;
+}
+
+
+.messagess{
+    height: 50px;
+    width: 100%;
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="dashboardTitle">Patient Health Dashboard</h1>
+    </header>
+
+    <div class="dashboard-container">
+        <div class="summary-section">
+            <h2>Health Summary</h2>
+            <div class="summary-data">
+                <div class="summary-item">
+                    <h3>Pluse Rate</h3>
+                    <p id="weightValue">75 BPM</p>
+                </div>
+                <div class="summary-item">
+                    <h3>Blood Pressure</h3>
+                    <p id="bpValue">120/80 mmHg</p>
+                </div>
+                <div class="summary-item">
+                    <h3>Blood Sugar</h3>
+                    <p id="bloodSugarValue">100 mg/dL</p>
+                </div>
+               
+            </div>
+        </div>
+
+        <div class="chart-section">
+            <h2>Daily Health Trends</h2>
+            <div class="chart-container">
+                <canvas id="dailyHealthChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="chart-container">
+        <canvas id="dailyHealthChart" width="400" height="200"></canvas>
+    </div>
+    
+
+
+
+    
+
+    <div class="chart-legend">
+        <div class="chart-legend-item">
+            <span class="chart-legend-color" style="background-color: rgba(255, 99, 132, 0.2);"></span>
+            <span>Pulse Rate</span>
+        </div>
+        <div class="chart-legend-item">
+            <span class="chart-legend-color" style="background-color: rgba(54, 162, 235, 0.2);"></span>
+            <span>Blood Pressure</span>
+        </div>
+        <div class="chart-legend-item">
+            <span class="chart-legend-color" style="background-color: rgba(255, 206, 86, 0.2);"></span>
+            <span>Blood Sugar</span>
+        </div>
+    </div>
+    
+
+
+    <div class="dashboard-container">
+       
+    
+        <h1>Upload Your Image</h1>
+        <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload') }}">
+            <input type="file" name="image" id="image">
+            <br>
+            <label for="comment">Comment (optional):</label>
+            <input type="text" name="disease" id="disease">
+            <label for="comment">Comment (optional):</label>
+            <input type="text" name="date" id="date">
+            <br>
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+    
+
+
+
+<div class="dashboard-container">
+   <div class="messagevar">
+    <input type="text" class="messagess" placeholder="Enter you message here">
+   </div>
+
+    <div class="message-box" >
+        <p>Submit you message </p>
+    </div>
+</div>
+<a href="{{ url_for('logout') }}" class="btn">Logout</a>
+                <a href="{{ url_for('upload') }}" class="btn">upoad</a>
+
+
+
+
+    <footer>
+        <p>&copy; 2024 Patient Health Dashboard</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    
+    const patientData = {
+        PluseRate: '70 BPM',
+        bloodPressure: '120/80 mmHg',
+        bloodSugar: '100 mg/dL',
+        healthTrends: [65, 68, 70, 72, 75, 73, 71] 
+    };
+
+   
+    document.getElementById('Pluserate').textContent = patientData.Pluserate;
+    document.getElementById('bpValue').textContent = patientData.bloodPressure;
+    document.getElementById('bloodSugarValue').textContent = patientData.bloodSugar;
+
+    const ctx = document.getElementById('healthTrendChart').getContext('2d');
+    const healthTrendChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+            datasets: [{
+                label: 'Health Trends',
+                data: patientData.healthTrends,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+});
+
+
+function uploadImage() {
+    const fileInput = document.getElementById('imageUpload');
+    const imgElement = document.getElementById('uploadedImage');
+
+    
+    if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+
+       
+        if (file.type.startsWith('image/')) {
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+               
+                imgElement.src = event.target.result;
+            };
+
+            
+            reader.readAsDataURL(file);
+        } else {
+            alert('Please select an image file (JPEG, PNG, etc.).');
+        }
+    } else {
+        alert('Please select a file to upload.');
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+
+const patientData = {
+    PluseRate: '70 BPM',
+    bloodPressure: '120/80 mmHg',
+    bloodSugar: '100 mg/dL',
+    healthTrends: [65, 68, 70, 72, 75, 73, 71],
+    dailyHealth: [
+        { date: '2024-04-01', pulseRate: 72, bloodPressure: '118/76', bloodSugar: 95 },
+        { date: '2024-04-02', pulseRate: 70, bloodPressure: '122/78', bloodSugar: 100 },
+        { date: '2024-04-03', pulseRate: 75, bloodPressure: '120/82', bloodSugar: 105 },
+        { date: '2024-04-04', pulseRate: 73, bloodPressure: '125/80', bloodSugar: 98 },
+        { date: '2024-04-05', pulseRate: 71, bloodPressure: '119/77', bloodSugar: 102 },
+        { date: '2024-04-06', pulseRate: 69, bloodPressure: '121/79', bloodSugar: 97 }
+    ]
+};
+
+
+document.getElementById('weightValue').textContent = patientData.PluseRate;
+document.getElementById('bpValue').textContent = patientData.bloodPressure;
+document.getElementById('bloodSugarValue').textContent = patientData.bloodSugar;
+
+
+const trendCtx = document.getElementById('healthTrendChart').getContext('2d');
+const healthTrendChart = new Chart(trendCtx, {
+    type: 'line',
+    data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        datasets: [{
+            label: 'Health Trends',
+            data: patientData.healthTrends,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+
+const dailyHealthLabels = patientData.dailyHealth.map(entry => entry.date);
+const dailyPulseRates = patientData.dailyHealth.map(entry => entry.pulseRate);
+const dailyBloodPressures = patientData.dailyHealth.map(entry => entry.bloodPressure);
+const dailyBloodSugars = patientData.dailyHealth.map(entry => entry.bloodSugar);
+
+const dailyHealthCtx = document.getElementById('dailyHealthChart').getContext('2d');
+const dailyHealthChart = new Chart(dailyHealthCtx, {
+    type: 'line',
+    data: {
+        labels: dailyHealthLabels,
+        datasets: [
+            {
+                label: 'Pulse Rate',
+                data: dailyPulseRates,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            },
+            {
+                label: 'Blood Pressure',
+                data: dailyBloodPressures,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            },
+            {
+                label: 'Blood Sugar',
+                data: dailyBloodSugars,
+                backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                borderColor: 'rgba(255, 206, 86, 1)',
+                borderWidth: 1
+            }
+        ]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+});
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const messageBox = document.querySelector('.message-box');
+
+    messageBox.addEventListener('click', function() {
+        alert('You clicked the message box!');
+    });
+});
+
+
+
+
+    </script>
+</body>
+</html>
