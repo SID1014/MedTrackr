@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Public Health Tracking System</title>
     <style>
-        *{
-            
-        }
+        
          body {
            
             font-family: Arial, sans-serif;
@@ -41,7 +39,7 @@
         nav {
             display: -webkit-inline-box;
             position: absolute;
-            align-items: ;
+            
             justify-content: space-between;
             font-size: smaller;
             top: 0;
@@ -294,7 +292,7 @@
             <a href="#headerr">Home</a>
             <a href="#services">Services</a>
             <a href="#abouut">About</a>
-            <a href="signup.html">Signup</a>
+            <a href="{{ url_for('register') }}">Signup</a>
             <a href="#login">Login</a></div>
         </nav>
     </header></div>
@@ -320,37 +318,35 @@
     </div>
     
     <div class="login" id="login">
-        <h2>Patients Login 
-        </h2>
-        <form action="#" method="post" id="form">
-            <br>
-                
-            
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <h1>
-             </h1><br><h1>  </h1>
-            
-            <a href="pd2.html" class="button">Login as patient</a><h1>
-                          
-            </h1><h1>          </h1>
-
-
-            <h2>Doctor Login 
-            </h2>
-            <form action="#" method="post" id="form">
-                <br>
-                    
-                
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <h1>
-                 </h1><br><h1>  </h1>
-
-
-
-            <a href="db4.html" class="button">Login as Doctor</a>
+        <h1>Login</h1>
+    <div class="login-form">
+        <h2>Patient Login</h2>
+        <form action="{{ url_for('login') }}" method="post">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required><br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required><br>
+            <button type="submit">Login as Patient</button>
         </form>
+        {% if msg %}
+            <p>{{ msg }}</p>
+        {% endif %}
+    </div>
+
+    <div class="login-form">
+        <h2>Doctor Login</h2>
+        <form action="{{ url_for('logi') }}" method="post">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required><br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required><br>
+            <button type="submit">Login as Doctor</button>
+        </form>
+        {% if msg %}
+            <p>{{ msg }}</p>
+        {% endif %}
+    </div>
+
     </div>
     <div class="contact">
         <h2>Contact Us</h2>
