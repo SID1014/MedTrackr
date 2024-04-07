@@ -17,7 +17,7 @@ app.config['MYSQL_DB'] = 'Codement'
 
 mysql = MySQL(app)
 
-app.config['UPLOAD_FOLDER'] = 'static/images'
+app.config['UPLOAD_FOLDER'] = 'static\images'
 
 # Function to hash passwords
 def hash_password(password):
@@ -158,30 +158,38 @@ def med_view():
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
+    msg=''
     if request.method == 'POST':
         uploaded_file = request.files['image']
         date = request.form.get('date')  # Get comment from form (if present)
         disease = request.form.get('disease')
+        ui=request.form.get('ui')
        
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        current_user=cursor.execute('SELECT * FROM patient WHERE email = %s', (session['email']  ,) )
+        current_user=cursor.execute('SELECT * FROM patient WHERE id = %s', (  ui,) )
         filename=save_upload(uploaded_file, current_user)
         
            # new_image = Image(NULL, filename=filename, comment=comment)  # Store comment
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('INSERT INTO images VALUES (NULL,  % s, % s , %s)', ( filename, date,disease ))
+        cursor.execute('INSERT INTO images VALUES (%s,  % s, % s , %s)', (ui, filename, date,disease ))
         mysql.connection.commit()
+        msg="Precription Updated"
            # db.session.add(new_image)
            # db.session.commit()
 
-        return redirect(url_for('show_images'))
+        
+    return render_template('pd2.html')
 
-    return render_template('upload.html')
 
-
-@app.route('/images')
+@app.route('/images', methods=['GET', 'POST'])
 def show_images():
-    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT * FROM images")
-    images = cursor.fetchall()  # Fetch all images
-    return render_template('images.html', images=images)
+    if request.method == 'POST':
+      ui=request.form.get('ui')
+      cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+      cursor.execute("SELECT * FROM images WHERE id=%s",(ui,))
+      images = cursor.fetchall()  # Fetch one images
+   
+    
+        
+
+    return render_template('images.html', images = images  )

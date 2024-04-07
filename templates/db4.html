@@ -223,7 +223,7 @@
 </div>
 </div>
 <div class="ggg">
-<form method="POST" action="/doc" >
+<form method="POST" action="{{ url_for('med_view')}}" >
 <label for="username">Username:</label>
 <input type="text"  placeholder="Enter Patient's email" name="email">
 <br><p></p>
@@ -231,7 +231,9 @@
 <input type="tel" placeholder="Enter ID" name="id"><p><br></p>
 <button type="submit">VIEW DETAILS</button>
 </form>
-
+{% if msg %}
+<p>{{ msg }}</p>
+{% endif %}
 </div>
 
 

@@ -238,11 +238,27 @@ h1, h2, h3 {
             <input type="text" name="disease" id="disease">
             <label for="comment">Disease:</label>
             <input type="text" name="date" id="date">
+            <label for="comment">Unique ID:</label>
+            <input type="text" name="ui" id="ui">
+            
             <br>
             <button type="submit">Upload</button>
         </form>
     </div>
+    <div class="dashboard-container">
+       
     
+        <h1>View Data</h1>
+        <form method="POST" action="{{ url_for('show_images') }}">
+        
+            <br>
+            <label for="comment">Unique ID</label>
+            <input type="text" name="ui" id="ui">
+        
+            <br>
+            <button type="submit">SUbmit</button>
+        </form>
+        </div>
 
 
 
