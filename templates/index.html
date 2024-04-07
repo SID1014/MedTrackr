@@ -3,253 +3,286 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEDTRACKR</title>
-    
-       <style>body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        background-image: url('background.jpg'); /* Replace 'background.jpg' with your image path */
-        background-size: cover;
-        background-position: center;
-        color: #333;
-    }
-    
-    header {
-        background-color: #007bff;
-        color: #fff;
-        text-align: center;
-        padding: 20px 0;
-    }
-    
-    footer {
-        text-align: center;
-        padding: 10px;
-        background-color: rgba(0, 0, 0, 0.8);
-        color: #fff;
-    }
-    
-    .dashboard-container {
-        max-width: 800px;
-        margin: 20px auto;
-        padding: 20px;
-        background-color: rgba(255, 255, 255, 0.8);
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    h1, h2, h3 {
-        text-align: center;
-    }
-    
-    .summary-section {
-        margin-bottom: 30px;
-    }
-    
-    .summary-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px;
-        background-color: #f0f0f0;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        margin-bottom: 10px;
-    }
-    
-    .summary-value {
-        display: flex;
-        align-items: center;
-    }
-    
-    .detail-button {
-        padding: 8px 16px;
-        margin-left: 10px;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    
-    .detail-button:hover {
-        background-color: #0056b3;
-    }
-    
-    .chart-container {
-        text-align: center;
-    }
-    
-    /* Additional styling for your charts can be added here */
-    
-    @media (max-width: 600px) {
-        .dashboard-container {
-            padding: 10px;
+    <title>Public Health Tracking System</title>
+    <style>
+        *{
+            
         }
-    }
-    
-    
-    .patient-details {
-        margin-top: 30px;
-    }
-    .patient-details table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    .patient-details th, .patient-details td {
-        padding: 10px;
-        border: 1px solid #ddd;
-        text-align: left;
-    }
-    .patient-details th {
-        background-color: #007bff;
-        color: #fff;
-    }
-    .patient-details input {
-        width: 100%;
-        padding: 8px;
-        box-sizing: border-box;
-    }
-    
-    
-    
-    .editable-section {
-        margin-top: 30px;
-    }
-    .editable-section label {
-        display: block;
-        margin-bottom: 5px;
-    }
-    .editable-section input {
-        width: 100%;
-        padding: 8px;
-        box-sizing: border-box;
-        margin-bottom: 10px;
-    }
-    .editable-section button {
-        padding: 8px 16px;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    .editable-section button:hover {
-        background-color: #0056b3;
-    }
-    *{
-    margin: 0;
-    padding: 0;
-    font-family: 'poppins', sans-serif;
-}
-.header{
-    min-height: 100vh;
-    width: 100%;
-    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(doctor-smartwatch-with-heart-medical-icons-smartwatch-health-tracker-health-monitor-activity-tracking-concept-pinkish-coral-bluevector-isolated-illustration_335657-2303.avif);
-    background-position: center;
-    background-position: cover;
-    position: relative;
-    background-repeat: no-repeat;
+         body {
+           
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-image: url('canvaheader.png');
+            background-color: #333;
+            color: #f4f4f4;
+            
+            background-size: cover;
+            background-position: center;
+            padding: 20px;
+            text-align: center;
+        }
+        .nava:hover{
+            color: aqua;
+        }
+        header h1{
+            font-size: 50px;
+            margin-top: 7px;
+            font-weight: 50px;
+            margin-bottom: 7px;
 
-}
-nav{
-    direction: flex;
-    padding: 2% 6%;
-    justify-content: space-between;
-    align-items: center;
-}
-nav img{
-    width: 150px;
-}
-.nav-links{
-    flex: 1;
-    text-align: right;
-}
-.nav-links ul li{
-    list-style: none;
-    display: inline-block;
-    padding: 8px 12px;
-    position: relative;
-}
-.nav-links ul li a{
-    color: #fff;
-    text-decoration: none;
-    font-size: 13px;
-}
-.nav-links ul li::after{
-    content: '';
-    width: 100%;
-    height: 2px;
-    background: #f44336;
-    display: block;
-    margin: auto;
-    transition: 0.5s;
-}
-.nav-links ul li:hover::after{
-        width: 100%;
-}
-.text-box{
-    width: 90%;
-    color: #fff;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    text-align: center;
-}
-.hero-btn{
-    display: inline-block;
-    text-decoration: none;
-    color: #fff;
-    border: 1px solid #fff;
-    padding: 12px 34px;
-    font-size: 13px;
-    background: transparent;
-    position: relative;
-    cursor: pointer;
-
-}
-.hero-btn:hover{
-    border: 1px solid #f44336;
-    background: #f44336;
-    transition: 1s;
-}
-nav .fa{
-    display: none;
-}
-@media(max-width: 700px){
-    .text-box h1{
-        font-size:  20px;
-    }
-    .nav-links ul li{
-        display: block;
-    }
-    .nav-links{
-        position: absolute;
-        background: #f44336;
-        height: 100vh;
-        width: 200px;
-        top: 0;
-        right: -200px;
-        text-align: right;
-        z-index: 2;
-        transition: 1s;
-    }
-    nav .fa{
-            display: block;
-            color: #fff;
+        }
+        header p{
+            font-size: 20px;
             margin: 20px;
-            font-size: 22px;
+        }
+        nav {
+            display: -webkit-inline-box;
+            position: absolute;
+            align-items: ;
+            justify-content: space-between;
+            font-size: smaller;
+            top: 0;
+            width: 100%;
+            padding: 20px 7%;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.6rem;
+        }
+        nav a:hover {
+            color: aqua ;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.6rem;
+        }
+        nav img{
+            height: 40px;
+        }
+        .hero {
+            background-image: url('');
+            background-color: grey;
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 100px 0;
+        }
+       
+        .contetntt:hover{
+            color: aqua;
+        }
+        
+
+        .don{
+            background-color: #fff;
+            border: 1px solid #333;
+            color: #333;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+            transition:all 0.3s;
+
+        }
+        .features {
+            background-color: #f4f4f4;
+            padding: 50px 0;
+            text-align: center;
+        }
+        .feature {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            width: calc(33.33% - 40px);
+        }
+        .about {
+            padding: 50px 0;
+            text-align: center;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            
+            width: 100%;
+            bottom: 0;
+        }
+       .contact {
+            background-color: #f9f9f9;
+            padding: 50px 0;
+            text-align: center;
+        }
+        .contact form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .contact input[type="text"],
+        .contact input[type="email"],
+        .contact textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        .contact textarea {
+            height: 150px;
+        }
+        .contact input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
             cursor: pointer;
+        }
+        .contact input[type="submit"]:hover {
+            background-color: #555;
+        }
+        .logo {
+            margin-right: 1%;
+            margin-left: 13%;
+        margin-bottom: 20px;
+            width: 35px; 
+            height: 35px; 
+            border-radius: 10px;
+        }
+        .login {
+            background-color: #f4f4f4;
+            padding: 50px 0;
+            text-align: center;
+        }
+        .login form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .login input[type="text"],
+        .login input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        .login input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .login input[type="submit"]:hover {
+            background-color: #555;
+        }
+        section {
+            margin-top: 50px;
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 50px 0;
+        }
+        section img {
+            display: block;
+            margin: 0 auto 20px;
+            max-width: 100%;
+            height: auto;
+        }
+        section h2 {
+            font-size: 24px;
+            margin-bottom: 40px;
+            margin-top: 40px;
+        }
+        section p {
+            font-size: 16px;
+            color: #666;
+        }
+        #services{
+            padding: 4rem;
+            text-align: center;
+        }
+        #sepa:hover{
+            color: aqua;
+            background: gray ;
+        }
+        #dava{
+            color: #333;
+            font-size: small;
+        }
+        
+       #dava:hover{
+            color: aqua;
+            
+        }
+        #hh1{
+            margin-bottom:  80px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        .service{
+            width: 30%;
+            display: inline-block;
+            padding: 0.2rem;
+            text-align: center;
+        }
+        .service img{
+            width: 100%;
+            margin-bottom: 1rem;
+            border-radius:  50%;
+        }
+        .service h2{
+            margin-bottom: 10px;
+            
+        }
+         #abouut{
+            padding: 50px 8%;
          }
-         .nav-links ul{
-            padding: 30px;
+         #abouut img{
+            margin-top: 50ox
+            ;
          }
-}</style> 
-    
-    
+        #form{
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            border-radius: 5px;
+            color: #333;
+        }
+        .button{
+            background-color: darkblue;
+            border: 1px;
+            border-radius: 20px;
+            width: 100%;
+            padding: 10px;
+            height: 10px;
+            color: #fff;
+        }
+        .button:hover{
+            background: #f4f4f4;
+            color: darkblue;
+            background-color: #666;
+           
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+       
+#button1{
+    background-color: darkblue;
+    color: white;
+    border-radius: 10px;
+}
+#button1:hover{
+    background-color: gray;
+    color: darkblue;
+    border-radius: 10px;
+}
+
+    </style>
 </head>
 <body><div id="rangs">
     <header id="headerr">
@@ -261,7 +294,7 @@ nav .fa{
             <a href="#headerr">Home</a>
             <a href="#services">Services</a>
             <a href="#abouut">About</a>
-            <a href="{{ url_for('register') }}">Signup</a>
+            <a href="signup.html">Signup</a>
             <a href="#login">Login</a></div>
         </nav>
     </header></div>
@@ -287,35 +320,37 @@ nav .fa{
     </div>
     
     <div class="login" id="login">
-        <h1>Login</h1>
-    <div class="login-form">
-        <h2>Patient Login</h2>
-        <form action="{{ url_for('login') }}" method="post">
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" required><br>
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password" required><br>
-            <button type="submit">Login as Patient</button>
-        </form>
-        {% if msg %}
-            <p>{{ msg }}</p>
-        {% endif %}
-    </div>
+        <h2>Patients Login 
+        </h2>
+        <form action="#" method="post" id="form">
+            <br>
+                
+            
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <h1>
+             </h1><br><h1>  </h1>
+            
+            <a href="pd2.html" class="button">Login as patient</a><h1>
+                          
+            </h1><h1>          </h1>
 
-    <div class="login-form">
-        <h2>Doctor Login</h2>
-        <form action="{{ url_for('logi') }}" method="post">
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username" required><br>
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password" required><br>
-            <button type="submit">Login as Doctor</button>
-        </form>
-        {% if msg %}
-            <p>{{ msg }}</p>
-        {% endif %}
-    </div>
 
+            <h2>Doctor Login 
+            </h2>
+            <form action="#" method="post" id="form">
+                <br>
+                    
+                
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <h1>
+                 </h1><br><h1>  </h1>
+
+
+
+            <a href="db4.html" class="button">Login as Doctor</a>
+        </form>
     </div>
     <div class="contact">
         <h2>Contact Us</h2>
