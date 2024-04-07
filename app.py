@@ -153,7 +153,7 @@ def upload():
         
            # new_image = Image(NULL, filename=filename, comment=comment)  # Store comment
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('INSERT INTO images VALUES (NULL,  % s, % s , %s)', ( filename, date,disease ))
+        cursor.execute('INSERT INTO images VALUES (%s,  % s, % s , %s)', ( filename, date,disease ))
         mysql.connection.commit()
            # db.session.add(new_image)
            # db.session.commit()
@@ -161,11 +161,27 @@ def upload():
         return redirect(url_for('show_images'))
 
     return render_template('upload.html')
+@app.route('/doc',methods=['GET','POST'])
+def med_view():
+    if request.method == 'POST' :
+       email = request.form['email']
+       password = request.form['id']
+       cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+       cursor.execute('SELECT * FROM patient WHERE email = % s AND id = % d', (email, password, ))
+       account = cursor.fetchone()
+       if account :
+            session['loggedin'] = True
+            session['id'] = account['id']
+            session['email'] = account['email']
+            return render_template('images.html', msg=msg)
+       else:
+           msg = 'ACCESSS NOT GRANTED!'
+    return render_template('db4.html', msg=msg)
 
 
 @app.route('/images')
 def show_images():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT * FROM images")
+    cursor.execute("SELECT * FROM images WHERE id = % s",( session['email']))
     images = cursor.fetchall()  # Fetch all images
     return render_template('images.html', images=images)
