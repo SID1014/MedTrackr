@@ -139,6 +139,22 @@ def register():
     elif request.method == 'POST':
         msg = 'Please fill out the form!'
     return render_template('register.html', msg=msg)
+@app.route('/doc',methods=['GET','POST'])
+def med_view():
+    if request.method == 'POST' :
+       email = request.form['email']
+       password = request.form['id']
+       cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+       cursor.execute('SELECT * FROM patient WHERE email = % s AND id = % s', (email, password, ))
+       account = cursor.fetchone()
+       if account :
+            session['loggedin'] = True
+            session['id'] = account['id']
+            session['email'] = account['email']
+            return redirect(url_for('show_images'))
+       else:
+           msg = 'ACCESSS NOT GRANTED!'
+    return render_template('db4.html', msg=msg)
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
