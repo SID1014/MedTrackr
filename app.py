@@ -29,7 +29,7 @@ def save_upload(uploaded_file, current_user):
 
   Args:
       uploaded_file: The uploaded file object from the form submission.
-      current_user: The current user object (assuming you have user authentication).
+      current_user: The currenuser object (assuming you have user authentication).
 
   Returns:
       The filepath where the file is saved (or None if there's an error).
